@@ -1,0 +1,21 @@
+{
+	"extends": "./tsconfig.options.json",
+	"compilerOptions": {
+		"target": "es2016",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"lib": ["DOM", "ESNext"],
+		"jsx": "react",
+		"baseUrl": ".",
+		"outDir": "lib/prod",
+		"skipLibCheck": true,
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"composite": true,
+		"isolatedModules": true,
+		"esModuleInterop": true
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx", "typings/**/*.d.ts"],
+	"exclude": ["node_modules", "lib", "dist", "src/tests"]
+}

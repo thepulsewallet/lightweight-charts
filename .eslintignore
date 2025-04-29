@@ -7,7 +7,7 @@
 
 /src/typings/_resize-observer/index.d.ts
 
-**/node_modules
+**/node_modules/**
 
 /website/docs/api/**
 /website/versioned_docs/**/api/**
@@ -18,3 +18,15 @@
 /packages/create-lwc-plugin
 
 /debug
+
+coverage/**
+.github/**
+tests/e2e/coverage/viewer/**
+tests/e2e/graphics/report-server/**
+tests/e2e/memleaks/runner-silent.js
+tests/e2e/coverage/data.ts
+docs/api-docs/**
+graphics/**
+graphics-docs/**
+debug/source-map-loader.js
+examples/**

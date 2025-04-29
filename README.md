@@ -7,11 +7,12 @@
 
   <h1>Lightweight Charts™</h1>
 
-  [![CircleCI][ci-img]][ci-link]
-  [![npm version][npm-version-img]][npm-link]
-  [![npm bundle size][bundle-size-img]][bundle-size-link]
-  [![Dependencies count][deps-count-img]][bundle-size-link]
-  [![Downloads][npm-downloads-img]][npm-link]
+[![CircleCI][ci-img]][ci-link]
+[![npm version][npm-version-img]][npm-link]
+[![npm bundle size][bundle-size-img]][bundle-size-link]
+[![Dependencies count][deps-count-img]][bundle-size-link]
+[![Downloads][npm-downloads-img]][npm-link]
+
 </div>
 
 <!-- markdownlint-enable no-inline-html -->
@@ -38,22 +39,80 @@ npm install lightweight-charts
 ```
 
 ```js
-import { createChart, LineSeries } from 'lightweight-charts';
+import { createChart, LineSeries } from "lightweight-charts";
 
 const chart = createChart(document.body, { width: 400, height: 300 });
 const lineSeries = chart.addSeries(LineSeries);
 lineSeries.setData([
-    { time: '2019-04-11', value: 80.01 },
-    { time: '2019-04-12', value: 96.63 },
-    { time: '2019-04-13', value: 76.64 },
-    { time: '2019-04-14', value: 81.89 },
-    { time: '2019-04-15', value: 74.43 },
-    { time: '2019-04-16', value: 80.01 },
-    { time: '2019-04-17', value: 96.63 },
-    { time: '2019-04-18', value: 76.64 },
-    { time: '2019-04-19', value: 81.89 },
-    { time: '2019-04-20', value: 74.43 },
+	{ time: "2019-04-11", value: 80.01 },
+	{ time: "2019-04-12", value: 96.63 },
+	{ time: "2019-04-13", value: 76.64 },
+	{ time: "2019-04-14", value: 81.89 },
+	{ time: "2019-04-15", value: 74.43 },
+	{ time: "2019-04-16", value: 80.01 },
+	{ time: "2019-04-17", value: 96.63 },
+	{ time: "2019-04-18", value: 76.64 },
+	{ time: "2019-04-19", value: 81.89 },
+	{ time: "2019-04-20", value: 74.43 },
 ]);
+```
+
+### React Native
+
+For React Native applications, use the React Native specific package:
+
+```bash
+npm install lightweight-charts-react-native
+```
+
+```jsx
+import React, { useRef } from "react";
+import { StyleSheet, View } from "react-native";
+import { Chart, LineSeries } from "lightweight-charts-react-native";
+
+export default function ChartScreen() {
+	const chartRef = useRef(null);
+
+	const handleChartReady = (chart) => {
+		// Chart is ready, add series
+		const lineSeries = chart.addSeries(LineSeries);
+		lineSeries.setData([
+			{ time: "2019-04-11", value: 80.01 },
+			{ time: "2019-04-12", value: 96.63 },
+			{ time: "2019-04-13", value: 76.64 },
+			{ time: "2019-04-14", value: 81.89 },
+			{ time: "2019-04-15", value: 74.43 },
+			{ time: "2019-04-16", value: 80.01 },
+			{ time: "2019-04-17", value: 96.63 },
+			{ time: "2019-04-18", value: 76.64 },
+			{ time: "2019-04-19", value: 81.89 },
+			{ time: "2019-04-20", value: 74.43 },
+		]);
+	};
+
+	return (
+		<View style={styles.container}>
+			<Chart
+				style={styles.chart}
+				options={{ height: 300, width: 400 }}
+				onChartReady={handleChartReady}
+			/>
+		</View>
+	);
+}
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	chart: {
+		height: 300,
+		width: "100%",
+	},
+});
 ```
 
 ### CDN
@@ -65,30 +124,33 @@ You can use [unpkg](https://unpkg.com/):
 The standalone version creates `window.LightweightCharts` object with all exports from `esm` version:
 
 ```js
-const chart = LightweightCharts.createChart(document.body, { width: 400, height: 300 });
+const chart = LightweightCharts.createChart(document.body, {
+	width: 400,
+	height: 300,
+});
 const lineSeries = chart.addSeries(LightweightCharts.LineSeries);
 lineSeries.setData([
-    { time: '2019-04-11', value: 80.01 },
-    { time: '2019-04-12', value: 96.63 },
-    { time: '2019-04-13', value: 76.64 },
-    { time: '2019-04-14', value: 81.89 },
-    { time: '2019-04-15', value: 74.43 },
-    { time: '2019-04-16', value: 80.01 },
-    { time: '2019-04-17', value: 96.63 },
-    { time: '2019-04-18', value: 76.64 },
-    { time: '2019-04-19', value: 81.89 },
-    { time: '2019-04-20', value: 74.43 },
+	{ time: "2019-04-11", value: 80.01 },
+	{ time: "2019-04-12", value: 96.63 },
+	{ time: "2019-04-13", value: 76.64 },
+	{ time: "2019-04-14", value: 81.89 },
+	{ time: "2019-04-15", value: 74.43 },
+	{ time: "2019-04-16", value: 80.01 },
+	{ time: "2019-04-17", value: 96.63 },
+	{ time: "2019-04-18", value: 76.64 },
+	{ time: "2019-04-19", value: 81.89 },
+	{ time: "2019-04-20", value: 74.43 },
 ]);
 ```
 
 ### Build Variants
 
-|Dependencies included|Mode|ES module|IIFE (`window.LightweightCharts`)|
-|-|-|-|-|
-|No|PROD|`lightweight-charts.production.mjs`|N/A|
-|No|DEV|`lightweight-charts.development.mjs`|N/A|
-|Yes (standalone)|PROD|`lightweight-charts.standalone.production.mjs`|`lightweight-charts.standalone.production.js`|
-|Yes (standalone)|DEV|`lightweight-charts.standalone.development.mjs`|`lightweight-charts.standalone.development.js`|
+| Dependencies included | Mode | ES module                                       | IIFE (`window.LightweightCharts`)              |
+| --------------------- | ---- | ----------------------------------------------- | ---------------------------------------------- |
+| No                    | PROD | `lightweight-charts.production.mjs`             | N/A                                            |
+| No                    | DEV  | `lightweight-charts.development.mjs`            | N/A                                            |
+| Yes (standalone)      | PROD | `lightweight-charts.standalone.production.mjs`  | `lightweight-charts.standalone.production.js`  |
+| Yes (standalone)      | DEV  | `lightweight-charts.standalone.development.mjs` | `lightweight-charts.standalone.development.js` |
 
 ## Development
 
@@ -108,14 +170,11 @@ As thanks for creating this product, we'd be grateful if you add it in a promine
 You can use the [`attributionLogo`](https://tradingview.github.io/lightweight-charts/docs/api/interfaces/LayoutOptions#attributionLogo) chart option for displaying an appropriate link to <https://www.tradingview.com/> on the chart itself, which will satisfy the link requirement.
 
 [demo-url]: https://www.tradingview.com/lightweight-charts/
-
 [ci-img]: https://img.shields.io/circleci/build/github/tradingview/lightweight-charts.svg
 [ci-link]: https://circleci.com/gh/tradingview/lightweight-charts
-
 [npm-version-img]: https://badge.fury.io/js/lightweight-charts.svg
 [npm-downloads-img]: https://img.shields.io/npm/dm/lightweight-charts.svg
 [npm-link]: https://www.npmjs.com/package/lightweight-charts
-
 [bundle-size-img]: https://badgen.net/bundlephobia/minzip/lightweight-charts
 [deps-count-img]: https://img.shields.io/badge/dynamic/json.svg?label=dependecies&color=brightgreen&query=$.dependencyCount&uri=https%3A%2F%2Fbundlephobia.com%2Fapi%2Fsize%3Fpackage%3Dlightweight-charts
 [bundle-size-link]: https://bundlephobia.com/result?p=lightweight-charts

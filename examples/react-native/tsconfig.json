@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "es2016",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"lib": ["DOM", "ESNext"],
+		"jsx": "react",
+		"baseUrl": ".",
+		"skipLibCheck": true,
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"strict": true
+	},
+	"include": ["**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
+}

@@ -1,12 +1,27 @@
 {
-    "files.exclude": {
-        "dist/**": true,
-        "lib/**": true,
-        "tests/e2e/graphics/.gendata/**": true,
-        "tests/e2e/coverage/.gendata/**": true,
-        "website/.docusaurus/**": true,
-        "website/build/**": true,
-        "website/docs/api/**": true,
-    },
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+	"files.exclude": {
+		"dist/**": true,
+		"lib/**": true,
+		"tests/e2e/graphics/.gendata/**": true,
+		"tests/e2e/coverage/.gendata/**": true,
+		"website/.docusaurus/**": true,
+		"website/build/**": true,
+		"website/docs/api/**": true
+	},
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"eslint.options": {
+		"rules": {
+			"quotes": "off",
+			"@typescript-eslint/quotes": "off"
+		}
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	}
 }

@@ -1,10 +1,10 @@
 {
   "private": true,
   "version": "5.0.6",
-  "name": "lightweight-charts",
+  "name": "lightweight-charts-react-native",
   "author": "TradingView, Inc.",
   "license": "Apache-2.0",
-  "description": "Performant financial charts built with HTML5 canvas",
+  "description": "Performant financial charts for React Native based on lightweight-charts",
   "homepage": "https://www.tradingview.com/lightweight-charts/",
   "bugs": {
     "url": "https://github.com/tradingview/lightweight-charts/issues"
@@ -14,23 +14,23 @@
     "url": "git+https://github.com/tradingview/lightweight-charts.git"
   },
   "type": "module",
-  "module": "dist/lightweight-charts.production.mjs",
-  "main": "dist/lightweight-charts.production.mjs",
+  "module": "dist/lightweight-charts-react-native.mjs",
+  "main": "dist/lightweight-charts-react-native.mjs",
   "typings": "dist/typings.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "development": {
         "types": "./dist/typings.d.ts",
-        "import": "./dist/lightweight-charts.development.mjs"
+        "import": "./dist/lightweight-charts-react-native.development.mjs"
       },
       "production": {
         "types": "./dist/typings.d.ts",
-        "import": "./dist/lightweight-charts.production.mjs"
+        "import": "./dist/lightweight-charts-react-native.production.mjs"
       },
       "default": {
         "types": "./dist/typings.d.ts",
-        "import": "./dist/lightweight-charts.production.mjs"
+        "import": "./dist/lightweight-charts-react-native.production.mjs"
       }
     }
   },
@@ -40,19 +40,26 @@
   "keywords": [
     "financial-charting-library",
     "charting-library",
-    "html5-charts",
     "canvas",
     "typescript",
     "charting",
     "charts",
     "tradingview",
-    "candlestick"
+    "candlestick",
+    "react-native",
+    "mobile"
   ],
   "engines": {
     "node": ">=22.3"
   },
   "dependencies": {
-    "fancy-canvas": "2.1.0"
+    "fancy-canvas": "2.1.0",
+    "react-native-canvas": "^0.1.38",
+    "react-native-webview": "^11.26.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0"
   },
   "devDependencies": {
     "@juggle/resize-observer": "3.4.0",
@@ -67,6 +74,8 @@
     "@types/node": "22",
     "@types/pixelmatch": "5.2.6",
     "@types/pngjs": "6.0.5",
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.70.0",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/eslint-plugin-tslint": "7.0.2",
     "@typescript-eslint/parser": "7.18.0",
@@ -85,6 +94,7 @@
     "eslint-plugin-mdx": "3.4.0",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-native": "^4.0.0",
     "eslint-plugin-tsdoc": "0.4.0",
     "eslint-plugin-unicorn": "56.0.1",
     "esno": "4.8.0",
@@ -124,6 +134,8 @@
     "lint": "npm-run-all -p lint:**",
     "lint:eslint": "eslint --format=unix ./",
     "lint:md": "markdownlint -i \"**/node_modules/**\" -i \"**/website/docs/api/**\" -i \"**/website/versioned_docs/**/api/**\" -i \"**/*.mdx\" \"**/*.md\"",
+    "lint:no-quotes": "eslint --format=unix ./ --rule \"quotes:off\" --rule \"@typescript-eslint/quotes:off\"",
+    "lint:react-native": "node scripts/check-react-native.js",
     "check-dts-docs": "npm-run-all -p check-dts-docs-duplicates check-dts-docs-eslint",
     "check-dts-docs-duplicates": "node ./scripts/check-typings-for-duplicates.js ./dist/typings.d.ts",
     "check-dts-docs-eslint": "eslint --format=unix ./dist/typings.d.ts --no-ignore",
@@ -138,10 +150,6 @@
     "prepare-package-json-for-release": "node ./scripts/clean-package-json.js",
     "size-limit": "size-limit",
     "verify": "npm-run-all clean -p build:prod check-markdown-links -p lint check-dts-docs tsc-verify test size-limit -p type-tests",
-    "test": "esno --import ./tests/unittests/setup.units.mjs --test './tests/unittests/**/*.spec.ts'",
-    "type-tests": "tsc -b ./src/tsconfig.composite.json && tsc -p ./tests/type-checks/tsconfig.composite.json --noEmit",
-    "e2e:coverage": "esno ./tests/e2e/coverage/runner.ts ./dist/lightweight-charts.standalone.development.js",
-    "e2e:interactions": "esno ./tests/e2e/interactions/runner.ts ./dist/lightweight-charts.standalone.development.js",
-    "e2e:memleaks": "esno ./tests/e2e/memleaks/runner.ts ./dist/lightweight-charts.standalone.development.js"
+    "test": "esno --import ./tests/unittests/setup.units.mjs --test './tests/unittests/**/*.spec.ts'"
   }
 }
